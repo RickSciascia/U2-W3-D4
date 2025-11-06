@@ -1,8 +1,8 @@
 const primaryURL = "https://api.pexels.com/v1/search?query=cats";
 const secondaryURL = "https://api.pexels.com/v1/search?query=tigers";
 
-const loadImages = function () {
-  fetch(primaryURL, {
+const loadImages = function (url = primaryURL) {
+  fetch(url, {
     headers: {
       Authorization: "3VbZitPxdhDy8FkJyrffF4w1K819XTGYd1SvcM5so2qtkSKDVKRVkyZg",
     },
@@ -89,4 +89,14 @@ const hide = function (e) {
   if (e.target.closest(".col-md-4")) {
     e.target.closest(".col-md-4").remove();
   }
+};
+
+const searchPhotos = function (e) {
+  e.preventDefault();
+  searchInput = document.getElementById("search");
+  searchValue = searchInput.value;
+  console.log(searchValue);
+  const urlBySearch = "https://api.pexels.com/v1/search?query=" + searchValue;
+  console.log(urlBySearch);
+  loadImages(urlBySearch);
 };
